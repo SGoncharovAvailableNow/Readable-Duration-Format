@@ -14,6 +14,7 @@ namespace Readable_Duration_Format.TimeFormatConverter
             Hour = 3600,
             Minute = 60
         }
+
         public string TimeFormatConverter(int innerSeconds)
         {
             if (innerSeconds == 0)
