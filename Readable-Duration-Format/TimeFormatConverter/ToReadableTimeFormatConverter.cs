@@ -40,66 +40,83 @@ namespace Readable_Duration_Format.TimeFormatConverter
         private string ReturningStringContructocr(int seconds)
         {
             string daysBlock = "";
+            string commaBlock1 = ", ";
             string hoursBlock = "";
+            string commaBlock2 = ", ";
             string minutesBlock = "";
             string secondsBlock = "";
 
-            switch (TimeSpan.FromSeconds(seconds).Days)
+            var swtchDay = TimeSpan.FromSeconds(seconds).Days.ToString().Select(x => x - '0').ToArray();
+            var swtchHours = TimeSpan.FromSeconds(seconds).Hours.ToString().Select(x => x - '0').ToArray();
+            var swtchMinutes = TimeSpan.FromSeconds(seconds).Minutes.ToString().Select(x => x - '0').ToArray();
+            var swtchSeconds = TimeSpan.FromSeconds(seconds).Seconds.ToString().Select(x => x - '0').ToArray();
+
+            switch ((swtchDay.Length > 1 && swtchDay[swtchDay.Length - 1] == 0) ? 5 : swtchDay[swtchDay.Length - 1])
             {
                 case 0: daysBlock = ""; break;
-                case 1: daysBlock = $"{TimeSpan.FromSeconds(seconds).Days} день "; break;
-                case 2: daysBlock = $"{TimeSpan.FromSeconds(seconds).Days} дня "; break;
-                case 3: daysBlock = $"{TimeSpan.FromSeconds(seconds).Days} дня "; break;
-                case 4: daysBlock = $"{TimeSpan.FromSeconds(seconds).Days} дня "; break;
-                default: daysBlock = $"{TimeSpan.FromSeconds(seconds).Days} дней "; break;
+                case 1: daysBlock = $"{TimeSpan.FromSeconds(seconds).Days} день"; break;
+                case 2: daysBlock = $"{TimeSpan.FromSeconds(seconds).Days} дня"; break;
+                case 3: daysBlock = $"{TimeSpan.FromSeconds(seconds).Days} дня"; break;
+                case 4: daysBlock = $"{TimeSpan.FromSeconds(seconds).Days} дня"; break;
+                    default: daysBlock = $"{TimeSpan.FromSeconds(seconds).Days} дней"; break;
             }
 
-            switch (TimeSpan.FromSeconds(seconds).Hours)
+            switch ((swtchHours.Length > 1 && swtchHours[swtchHours.Length - 1] == 0) ? 5 : swtchHours[swtchHours.Length - 1])
             {
                 case 0: hoursBlock = ""; break;
-                case 1: hoursBlock = $"{TimeSpan.FromSeconds(seconds).Hours} час "; break;
-                case 2: hoursBlock = $"{TimeSpan.FromSeconds(seconds).Hours} часа "; break;
-                case 3: hoursBlock = $"{TimeSpan.FromSeconds(seconds).Hours} часа "; break;
-                case 4: hoursBlock = $"{TimeSpan.FromSeconds(seconds).Hours} часа "; break;
-                default: hoursBlock = $"{TimeSpan.FromSeconds(seconds).Hours} часов "; break;
+                case 1: hoursBlock = $"{TimeSpan.FromSeconds(seconds).Hours} час"; break;
+                case 2: hoursBlock = $"{TimeSpan.FromSeconds(seconds).Hours} часа"; break;
+                case 3: hoursBlock = $"{TimeSpan.FromSeconds(seconds).Hours} часа"; break;
+                case 4: hoursBlock = $"{TimeSpan.FromSeconds(seconds).Hours} часа"; break;
+                    default: hoursBlock = $"{TimeSpan.FromSeconds(seconds).Hours} часов"; break;
             }
 
-            switch (TimeSpan.FromSeconds(seconds).Minutes)
+            switch ((swtchMinutes.Length > 1 && swtchMinutes[swtchMinutes.Length - 1] == 0) ? 5 : swtchMinutes[swtchMinutes.Length - 1])
             {
                 case 0: minutesBlock = ""; break;
-                case 1: minutesBlock = $"{TimeSpan.FromSeconds(seconds).Minutes} минута "; break;
-                case 2: minutesBlock = $"{TimeSpan.FromSeconds(seconds).Minutes} минуты "; break;
-                case 3: minutesBlock = $"{TimeSpan.FromSeconds(seconds).Minutes} минуты "; break;
-                case 4: minutesBlock = $"{TimeSpan.FromSeconds(seconds).Minutes} минуты "; break;
-                default: minutesBlock = $"{TimeSpan.FromSeconds(seconds).Minutes} минут "; break;
+                case 1: minutesBlock = $"{TimeSpan.FromSeconds(seconds).Minutes} минута"; break;
+                case 2: minutesBlock = $"{TimeSpan.FromSeconds(seconds).Minutes} минуты"; break;
+                case 3: minutesBlock = $"{TimeSpan.FromSeconds(seconds).Minutes} минуты"; break;
+                case 4: minutesBlock = $"{TimeSpan.FromSeconds(seconds).Minutes} минуты"; break;
+                    default: minutesBlock = $"{TimeSpan.FromSeconds(seconds).Minutes} минут"; break;
             }
 
             if (TimeSpan.FromSeconds(seconds).Days == 0 && TimeSpan.FromSeconds(seconds).Hours == 0 && TimeSpan.FromSeconds(seconds).Minutes == 0)
             {
-                switch (TimeSpan.FromSeconds(seconds).Seconds)
+                switch ((swtchSeconds.Length > 1 && swtchSeconds[swtchSeconds.Length - 1] == 0) ? 5 : swtchSeconds[swtchSeconds.Length - 1])
                 {
                     case 0: secondsBlock = ""; break;
                     case 1: secondsBlock = $"{TimeSpan.FromSeconds(seconds).Seconds} секунда."; break;
                     case 2: secondsBlock = $"{TimeSpan.FromSeconds(seconds).Seconds} секунды."; break;
                     case 3: secondsBlock = $"{TimeSpan.FromSeconds(seconds).Seconds} секунды."; break;
                     case 4: secondsBlock = $"{TimeSpan.FromSeconds(seconds).Seconds} секунды."; break;
-                    default: secondsBlock = $"{TimeSpan.FromSeconds(seconds).Seconds} секунд."; break;
+                        default: secondsBlock = $"{TimeSpan.FromSeconds(seconds).Seconds} секунд."; break;
                 }
             }
             else
             {
-                switch (TimeSpan.FromSeconds(seconds).Seconds)
+                switch ((swtchSeconds.Length > 1 && swtchSeconds[swtchSeconds.Length - 1] == 0) ? 5 : swtchSeconds[swtchSeconds.Length - 1])
                 {
                     case 0: secondsBlock = ""; break;
-                    case 1: secondsBlock = $"и {TimeSpan.FromSeconds(seconds).Seconds} секунда."; break;
-                    case 2: secondsBlock = $"и {TimeSpan.FromSeconds(seconds).Seconds} секунды."; break;
-                    case 3: secondsBlock = $"и {TimeSpan.FromSeconds(seconds).Seconds} секунды."; break;
-                    case 4: secondsBlock = $"и {TimeSpan.FromSeconds(seconds).Seconds} секунды."; break;
-                    default: secondsBlock = $"и {TimeSpan.FromSeconds(seconds).Seconds} секунд."; break;
+                    case 1: secondsBlock = $" и {TimeSpan.FromSeconds(seconds).Seconds} секунда."; break;
+                    case 2: secondsBlock = $" и {TimeSpan.FromSeconds(seconds).Seconds} секунды."; break;
+                    case 3: secondsBlock = $" и {TimeSpan.FromSeconds(seconds).Seconds} секунды."; break;
+                    case 4: secondsBlock = $" и {TimeSpan.FromSeconds(seconds).Seconds} секунды."; break;
+                        default: secondsBlock = $" и {TimeSpan.FromSeconds(seconds).Seconds} секунд."; break;
                 }
             }
 
-            return $"{daysBlock}{hoursBlock}{minutesBlock}{secondsBlock}";
+            if (daysBlock == string.Empty)
+            {
+                commaBlock1 = "";   
+            }
+
+            if (hoursBlock == string.Empty)
+            {
+                commaBlock2 = "";
+            }
+
+            return $"{daysBlock}{commaBlock1}{hoursBlock}{commaBlock2}{minutesBlock}{secondsBlock}";
         }
 
         private string MoreOneDayFromSeconds(int seconds)
