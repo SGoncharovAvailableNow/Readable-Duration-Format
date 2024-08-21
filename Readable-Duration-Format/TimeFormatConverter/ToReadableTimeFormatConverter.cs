@@ -30,10 +30,10 @@ namespace Readable_Duration_Format.TimeFormatConverter
                 return "Now";
             }
 
-            return ReturningStringContructocr(innerSeconds);
+            return TimeBuilder(innerSeconds);
         }
 
-        private string ReturningStringContructocr(int seconds)
+        private string TimeBuilder(int seconds)
         {
             string daysBlock = "";
             string commaBlock1 = ", ";
