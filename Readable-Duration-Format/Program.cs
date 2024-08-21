@@ -6,8 +6,6 @@ internal class Program
     {
         ToReadableTimeFormatConverter converter = new ToReadableTimeFormatConverter();
         
-        Console.WriteLine(converter.TimeFormatConverterIII(92600));
-        
         Console.WriteLine(converter.TimeFormatConverter(92600));
 
         Console.WriteLine(converter.TimeFormatConverter(38005));
